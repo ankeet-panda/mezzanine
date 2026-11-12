@@ -1,0 +1,149 @@
+@import '@fontsource-variable/archivo/wdth.css';
+
+/* Resets sit in a layer declared before the recipes' and the demo kit's, so their parts keep their geometry */
+@layer base, recipes, demokit;
+
+:root {
+  color-scheme: light;
+
+  /* Spacing: 4 px base, 8 px rhythm */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Layout: open-plane shell, plan at 1:1 */
+  --sidebar: 220px;
+  --pad: 24px;
+  --rail: 328px;
+  --gap: 24px;
+
+  /* Radius: architectural, small. Inner = outer − padding */
+  --radius-desk: 4px;
+  --radius-place: 6px;
+  --radius-control: 8px;
+  --radius-card: 14px;
+  --radius-pill: 999px;
+
+  /* Type: Archivo. UI at width 100; display at 112, the signage voice */
+  --font: 'Archivo Variable', 'Segoe UI', system-ui, sans-serif;
+  --wide: 112%;
+  --text-12: 0.75rem;
+  --text-13: 0.8125rem;
+  --text-14: 0.875rem;
+  --text-16: 1rem;
+  --text-20: 1.25rem;
+  --text-24: 1.5rem;
+  --text-32: 2rem;
+  --weight-regular: 420;
+  --weight-medium: 520;
+  --weight-semibold: 620;
+  --leading-tight: 1.15;
+  --leading-ui: 1.35;
+  --leading-body: 1.5;
+  --tracking-tight: -0.015em;
+
+  /* Neutrals: limestone ground, white sheet, graphite ink with a green cast */
+  --bg: oklch(0.975 0.004 95);
+  --surface: oklch(0.997 0.002 95);
+  --surface-2: oklch(0.962 0.005 95);
+  --surface-3: oklch(0.935 0.006 100);
+  --line: oklch(0.9 0.006 110);
+  --line-soft: oklch(0.94 0.005 100);
+  --border-control: oklch(0.6 0.012 150);
+  --text: oklch(0.23 0.014 165);
+  --text-2: oklch(0.42 0.012 160);
+  --text-3: oklch(0.49 0.01 150);
+
+  /* Accent: courtyard green. It means "you" and nothing else */
+  --accent: oklch(0.47 0.09 162);
+  --accent-hover: oklch(0.42 0.085 162);
+  --accent-ink: oklch(0.43 0.085 162);
+  --accent-pale: oklch(0.95 0.028 162);
+  --accent-line: oklch(0.8 0.06 162);
+  --on-accent: oklch(0.99 0.004 162);
+  --focus: oklch(0.43 0.085 162);
+
+  /* People on the plan: your team in graphite, other teams in stone, free desks drawn open */
+  --team: oklch(0.3 0.016 165);
+  --on-team: oklch(0.98 0.003 95);
+  --other: oklch(0.87 0.006 100);
+  --other-edge: oklch(0.62 0.01 140); /* 3:1 on the plan: these desks are buttons too */
+  --free: oklch(0.997 0.002 95);
+  --free-edge: oklch(0.56 0.014 150);
+  --dim: 0.32;
+
+  /* The drawing */
+  --wall: oklch(0.3 0.014 165);
+  --partition: oklch(0.55 0.01 150);
+  --glazing: oklch(0.72 0.04 225);
+  --chair: oklch(0.8 0.008 110);
+  --room: oklch(0.962 0.005 95);
+  --daylight: oklch(0.93 0.06 90 / 0.1); /* the plan's one wash, from the window wall */
+  /* The courtyard planting: sage kept far greyer than the accent, so green still means only "you" */
+  --planter: oklch(0.95 0.012 130);
+  --planter-leaf: oklch(0.975 0.01 130);
+  --planter-edge: oklch(0.8 0.025 130);
+
+  /* Status */
+  --warning-ink: oklch(0.5 0.12 65);
+
+  /* Depth: one low-alpha resting shadow; real shadows only for what floats */
+  --shadow-rest: 0 1px 2px oklch(0.23 0.02 165 / 0.05), 0 4px 14px -6px oklch(0.23 0.02 165 / 0.08);
+  --shadow-place: 0 1px 1px oklch(0.2 0.04 162 / 0.25), 0 4px 10px -2px oklch(0.2 0.04 162 / 0.3);
+  --shadow-float: 0 12px 32px oklch(0.23 0.02 165 / 0.14), 0 2px 6px oklch(0.23 0.02 165 / 0.06);
+
+  --focus-width: 2px;
+  --focus-offset: 2px;
+
+  /* Motion */
+  --dur-micro: 120ms;
+  --dur-swap: 160ms;
+  --dur-short: 220ms;
+  --dur-land: 280ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  /* Recipes paint from these */
+  --ix-ground: var(--bg);
+  --ix-surface: var(--surface);
+  --ix-sunk: var(--surface-2);
+  --ix-ink: var(--accent);
+  --ix-muted: var(--text-2);
+  --ix-line: var(--line);
+  --ix-line-strong: var(--border-control);
+  --ix-accent: var(--focus);
+  --ix-accent-soft: var(--accent-pale);
+  --ix-on-ink: var(--on-accent);
+  --ix-danger: oklch(0.5 0.17 28);
+  --ix-danger-soft: oklch(0.96 0.02 28);
+  --ix-shadow: oklch(0.23 0.02 165);
+  --ix-r-s: var(--radius-control);
+  --ix-dur-micro: var(--dur-micro);
+  --ix-dur-short: var(--dur-short);
+  --ix-ease-out: var(--ease-out);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; overflow-x: clip; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: var(--weight-regular) var(--text-14) / var(--leading-body) var(--font);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible { outline: var(--focus-width) solid var(--focus); outline-offset: var(--focus-offset); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  .num { font-variant-numeric: tabular-nums; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  p { margin: 0; text-wrap: pretty; }
+}

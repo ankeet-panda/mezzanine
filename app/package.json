@@ -1,0 +1,26 @@
+{
+  "name": "mezzanine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5197 --strictPort --host 127.0.0.1",
+    "build": "tsc --noEmit -p . && vite build",
+    "build:showcase": "vite build -c vite.showcase.config.ts",
+    "preview": "vite preview --port 5198 --strictPort --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "5.3.0",
+    "@number-flow/react": "0.6.2",
+    "lucide-react": "1.59.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "5.9.3",
+    "vite": "8.3.4"
+  }
+}

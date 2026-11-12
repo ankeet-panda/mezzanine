@@ -1,0 +1,107 @@
+/* The demo hero: page copy above one stage. Stage styles are nested under .dd */
+
+.hero {
+  max-width: 1104px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-12);
+  display: grid;
+  gap: var(--space-8);
+}
+.hero__top { display: flex; align-items: center; justify-content: space-between; }
+.hero__copy {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-8);
+  align-items: end;
+}
+.hero__title {
+  font-size: clamp(2rem, 1.2rem + 2.4vw, 3.25rem);
+  line-height: 1.04;
+  font-weight: var(--weight-semibold);
+  font-stretch: var(--wide);
+  letter-spacing: -0.025em;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.hero__side { display: grid; gap: var(--space-5); justify-items: start; }
+.hero__lede { color: var(--text-2); font-size: var(--text-16); line-height: var(--leading-body); max-width: 34em; }
+.hero__action {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-control);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (hover: hover) { .hero__action:hover { background: var(--accent-hover); } }
+
+.dd-figure { margin: 0; display: grid; gap: var(--space-3); }
+.dd-figure--pending { aspect-ratio: 1040 / 600; }
+.dd-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.dd-btn {
+  height: 36px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--text-14);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+@media (hover: hover) { .dd-btn:hover { background: var(--surface-2); } }
+.dd-note { color: var(--text-3); font-size: var(--text-13); }
+
+/* ---------- Inside the stage ---------- */
+/* The kit reverts host elements inside its stage; the product's own resets are restated here */
+.dd :is(h2, p, ul) { margin: 0; }
+/* The recipe button lives in a layer, and the kit's unlayered guard reverts buttons in a stage;
+   class rules beat that guard, so its face is restated here */
+.dd .ix-btn {
+  position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px; border: 1px solid var(--btn-edge); border-radius: var(--radius-control);
+  background: var(--btn-face); color: var(--on-accent); font: inherit; font-weight: var(--weight-medium); white-space: nowrap;
+}
+.dd .ix-btn[data-done] { color: var(--accent-ink); }
+.dd .ix-btn.is-morphing { border-color: transparent; background: transparent; }
+.dd .dd-body { align-content: start; }
+.dd { overflow: hidden; } /* the page is the ground: no plate behind the window */
+.dd .ss-stage { overflow: hidden; }
+.dd .dd-window { position: absolute; left: 48px; top: 48px; width: 1180px; height: 720px; }
+.dd .dd-side { display: grid; gap: var(--space-5); padding: 4px 12px 0; align-content: start; }
+.dd .dd-side .brand__name { font-size: var(--text-14); }
+.dd .dd-side .brand__tile { width: 24px; height: 24px; font-size: var(--text-13); border-radius: 6px; }
+.dd .dd-nav { display: grid; gap: 2px; }
+.dd .dd-nav .nav__item { min-height: 30px; font-size: var(--text-13); gap: 8px; padding: 0 var(--space-2); }
+.dd .dd-body { padding: var(--space-4) var(--space-5); display: grid; gap: var(--space-4); background: var(--bg); min-height: 100%; }
+.dd .dd-board { display: grid; grid-template-columns: 468px 300px; gap: var(--space-4); align-items: start; }
+.dd .plan-card { padding: var(--space-4) var(--space-4) var(--space-3); gap: var(--space-3); }
+.dd .plan { margin: 0; }
+.dd .dd-body > .week { display: grid; grid-template-columns: repeat(5, 192px); gap: var(--space-2); }
+/* The demo's day cards keep the story's rows: day, team count, faces, your desk */
+.dd .day__cap, .dd .panel__kit, .dd .panel__note { display: none; }
+.dd .day { padding: 12px; gap: 12px; }
+.dd .panel { padding: var(--space-4); }
+
+/* The flyer: the place card on its way from the button to the desk */
+.dd .dd-fly { z-index: 5; }
+.dd .dd-place { position: static; width: 100%; height: 100%; }
+
+/* Compact: the phone design, tighter, no window */
+.dd .dd-compact { position: absolute; inset: 16px 16px auto 16px; display: grid; gap: var(--space-3); }
+.dd .dd-compact__week { overflow: hidden; margin-inline: -16px; padding-inline: 16px; }
+.dd .dd-compact .week { display: flex; overflow: visible; margin: 0; padding: 0; gap: var(--space-2); }
+.dd .dd-compact .day { flex: 0 0 159px; padding: 12px; gap: 8px; }
+/* The compact crop shows two days: Tuesday (booked) and Wednesday (the team day) */
+.dd .dd-compact .day:is([data-day='mon'], [data-day='thu'], [data-day='fri']) { display: none; }
+.dd .dd-compact .panel { order: 0; }
+
+@media (max-width: 760px) {
+  .hero { padding: var(--space-5) var(--space-4) var(--space-10); gap: var(--space-6); }
+  .hero__copy { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+}
+.dd .ix-sr { display: none; } /* the button's live region has no listener inside the hidden stage */

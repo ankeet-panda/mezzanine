@@ -1,0 +1,85 @@
+/* The sharing wrapper: a quiet strip above the product that switches between the three pieces */
+.showcase {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding-block: var(--space-2);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.showcase__name { font-size: var(--text-13); font-weight: var(--weight-medium); color: var(--text-2); }
+.showcase__views { display: inline-flex; gap: var(--space-1); padding: 2px; border-radius: var(--radius-pill); background: var(--surface-3); }
+.showcase__views a {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--text-2);
+  font-size: var(--text-13);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.showcase__views a[aria-current='page'] { background: var(--surface); color: var(--text); box-shadow: var(--shadow-rest); }
+@media (hover: hover) { .showcase__views a:hover { color: var(--text); } }
+/* Inside the showcase the app's sticky parts sit below the strip */
+.showcase-host .sidebar { top: 49px; height: calc(100dvh - 49px); }
+@media (max-width: 900px) { .showcase-host .topbar { top: 49px; } }
+
+/* ---------- Concept page (Read surface) ---------- */
+.concept { max-width: 1040px; margin: 0 auto; padding: var(--space-10) var(--space-8) var(--space-12); display: grid; gap: var(--space-12); }
+.concept__head { display: grid; gap: var(--space-5); justify-items: start; max-width: 46rem; }
+.concept__title { font-size: clamp(2rem, 1.3rem + 2.2vw, 3rem); line-height: 1.06; font-weight: var(--weight-semibold); font-stretch: var(--wide); letter-spacing: -0.025em; overflow-wrap: break-word; min-width: 0; }
+.concept__lede { color: var(--text-2); font-size: var(--text-16); max-width: 36em; }
+.concept__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); }
+.concept__link { display: inline-flex; align-items: center; min-height: 44px; color: var(--text); font-weight: var(--weight-medium); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
+@media (hover: hover) { .concept__link:hover { text-decoration-color: currentColor; } }
+
+.concept__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--line); }
+.concept__h2 { font-size: var(--text-16); line-height: var(--leading-ui); font-weight: var(--weight-semibold); }
+.concept__body { display: grid; gap: var(--space-4); font-size: var(--text-16); color: var(--text-2); max-width: 42rem; }
+.concept__job { margin: 0; font-size: var(--text-20); line-height: 1.4; color: var(--text); font-weight: var(--weight-medium); }
+.concept__meta { font-size: var(--text-14); color: var(--text-3); }
+
+.concept__steps { max-width: none; gap: var(--space-8); }
+.step { display: grid; gap: var(--space-2); }
+.step__title { font-size: var(--text-16); color: var(--text); font-weight: var(--weight-semibold); }
+.step p { font-size: var(--text-14); max-width: 36rem; }
+.step__pair { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.step__visual { display: grid; justify-items: center; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow-rest); overflow-x: auto; }
+.step__caption { justify-self: start; font-size: var(--text-13); font-weight: var(--weight-semibold); color: var(--text-2); }
+
+.concept__hero { margin: 0; padding: var(--space-5); border-radius: 20px; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+.concept__hero > div { display: grid; gap: var(--space-4); }
+.concept__hero .day { --face-ring: var(--surface-2); }
+.concept__floor { display: grid; gap: var(--space-3); padding: var(--space-4) var(--space-5) var(--space-5); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow-rest); overflow-x: auto; }
+.concept__floor-title { font-size: var(--text-16); font-weight: var(--weight-semibold); color: var(--text); }
+.concept__floor .plan { margin: 0 auto; }
+
+.swatches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); margin: var(--space-2) 0 0; padding: 0; list-style: none; }
+.swatch { display: grid; grid-template-columns: 48px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: var(--space-3); row-gap: 2px; align-items: start; }
+.swatch__chip { grid-row: span 2; width: 48px; height: 48px; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line); }
+.swatch__name { color: var(--text); font-size: var(--text-14); font-weight: var(--weight-semibold); }
+.swatch__role { font-size: var(--text-14); color: var(--text-3); line-height: var(--leading-ui); }
+.specimen { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-5); align-items: center; margin-top: var(--space-2); padding: var(--space-5); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow-rest); }
+.specimen__wide { font-size: 3rem; line-height: 1; font-weight: var(--weight-semibold); font-stretch: var(--wide); letter-spacing: -0.025em; color: var(--text); }
+.specimen__note { font-size: var(--text-14); color: var(--text-2); }
+
+@media (max-width: 760px) {
+  .concept { padding: var(--space-6) var(--space-4) var(--space-10); gap: var(--space-8); }
+  .concept__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+  .swatches { grid-template-columns: minmax(0, 1fr); }
+  .specimen { grid-template-columns: minmax(0, 1fr); }
+  .step__pair { grid-template-columns: minmax(0, 1fr); }
+  .concept__hero { padding: var(--space-3); }
+  .concept__hero .week { display: flex; overflow-x: auto; scrollbar-width: none; margin: 0; padding: 0; }
+  .concept__hero .day { flex: 0 0 152px; }
+}

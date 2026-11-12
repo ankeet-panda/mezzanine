@@ -1,0 +1,39 @@
+/* ScrollFade */
+
+@property --ix-ft {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@property --ix-fb {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@layer recipes {
+  /* The frame: carries borders, radius and the focus ring, unmasked */
+  .ix-fade {
+    position: relative;
+    overflow: hidden;
+  }
+  .ix-fade:has(> .ix-fade__scroll:focus-visible) {
+    outline: 2px solid var(--ix-accent);
+    outline-offset: 2px;
+  }
+  /* The scroller: masked, so its edges fade where there is more */
+  .ix-fade__scroll {
+    overflow: auto;
+    overscroll-behavior: contain;
+    outline: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--ix-ft), #000 calc(100% - var(--ix-fb)), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 var(--ix-ft), #000 calc(100% - var(--ix-fb)), transparent 100%);
+    transition:
+      --ix-ft var(--ix-dur-short) var(--ix-ease-out),
+      --ix-fb var(--ix-dur-short) var(--ix-ease-out);
+  }
+  .ix-fade__scroll[data-axis='x'] {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--ix-ft), #000 calc(100% - var(--ix-fb)), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 var(--ix-ft), #000 calc(100% - var(--ix-fb)), transparent 100%);
+  }
+}
